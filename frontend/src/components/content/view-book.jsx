@@ -19,6 +19,7 @@ export default function ViewBook({ refresh = null, data = {} }) {
   const [openDialog, setOpenDialog] = useState(false)
   const [openWarning, setOpenWarning] = useState(false)
   const [isLoading, setLoading] = useState(null)
+  const [databook, setDatabook] = useState({ isLoading: true, data: { data: data } })
 
   async function DeleteBook() {
     if(!!isLoading) return;
@@ -102,21 +103,21 @@ export default function ViewBook({ refresh = null, data = {} }) {
               <div className="w-full smallcase:w-[150px] flex items-center justify-center">
                 <div className="w-[150px]">
                   <CoverImage
-                    src={data?.image||""}
-                    alt={data?.title||""}
+                    src={databook?.data?.data?.image||""}
+                    alt={databook?.data?.data?.title||""}
                     className="rounded-md shadow-md"
                   />
                 </div>
               </div>
               <div className="w-full smallcase:w-[calc(100%_-_150px)] px-3.5 py-1.5 smallcase:pl-3.5 max-smallcase:mt-6.5">
-                <h2 className="mb-2 font-semibold text-2xl">{data?.title||""}</h2>
-                <small className="block font-medium text-blue-600">{data?.author||""}</small>
-                <p className="mt-2">{data?.description||""}</p>
+                <h2 className="mb-2 font-semibold text-2xl">{databook?.data?.data?.title||""}</h2>
+                <small className="block font-medium text-blue-600">{databook?.data?.data?.author||""}</small>
+                <p className="mt-2">{databook?.data?.data?.description||""}</p>
                 <div className="w-full flex gap-2 mt-3.5">
-                  <Button className="cursor-pointer" onClick={() => { window.open(data.url_page||"") }}>
+                  <Button className="cursor-pointer" onClick={() => { window.open(databook?.data?.data?.url_page||"") }}>
                     <span>Read</span>
                   </Button>
-                  <EditBook data_book={data} refresh={refresh}/>
+                  <EditBook data_book={databook?.data?.data} refresh={refresh}/>
                   <Button variant="destructive" className="cursor-pointer" onClick={() => { setOpenWarning(true) }}>
                     <span>Delete A Book</span>
                   </Button>
@@ -128,23 +129,23 @@ export default function ViewBook({ refresh = null, data = {} }) {
                 <tbody>
                   <tr>
                     <td className="text-left py-1">Author</td>
-                    <td className="text-right py-1">{data?.author||"Loading..."}</td>
+                    <td className="text-right py-1">{databook?.data?.data?.author||"Loading..."}</td>
                   </tr>
                   <tr>
                     <td className="text-left py-1">Publisher</td>
-                    <td className="text-right py-1">{data?.publisher||"Loading..."}</td>
+                    <td className="text-right py-1">{databook?.data?.data?.publisher||"Loading..."}</td>
                   </tr>
                   <tr>
                     <td className="text-left py-1">Year Publish</td>
-                    <td className="text-right py-1">{data?.year_publish||"Loading..."}</td>
+                    <td className="text-right py-1">{databook?.data?.data?.year_publish||"Loading..."}</td>
                   </tr>
                   <tr>
                     <td className="text-left py-1">Total Page</td>
-                    <td className="text-right py-1">{data?.total_page||"Loading..."}</td>
+                    <td className="text-right py-1">{databook?.data?.data?.total_page||"Loading..."}</td>
                   </tr>
                   <tr>
                     <td className="text-left py-1">Language</td>
-                    <td className="text-right py-1">{data?.language||"Loading..."}</td>
+                    <td className="text-right py-1">{databook?.data?.data?.language||"Loading..."}</td>
                   </tr>
                 </tbody>
               </table>
