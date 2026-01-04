@@ -1,0 +1,31 @@
+{
+  "name": "backend",
+  "private": true,
+  "scripts": {
+    "db:client": "npx prisma generate",
+    "db:push": "npx prisma db push",
+    "db:migrate": "npx prisma migrate dev",
+    "db:deploy": "npx prisma migrate deploy",
+    "db:migrate-sql": "npx prisma migrate diff --from-empty --to-schema ./prisma/schema.prisma --script > ./prisma/migration.sql",
+    "dev": "nodemon server.js --dev",
+    "start": "node server.js --prod",
+    "build": "node -e 'console.log(`Why?, build only running on frontend`)'",
+    "prisma_gen": "npx prisma generate"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.11",
+    "pg": "^8.16.3",
+    "prisma": "^7.2.0"
+  }
+}

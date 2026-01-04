@@ -1,0 +1,37 @@
+# Docker Compose For Helping Services
+services:
+  database:
+    image: postgres:18-alpine
+    restart: unless-stopped
+    container_name: webapp-nerpstack-postgres
+    environment:
+      - "POSTGRES_USER=user"
+      - "POSTGRES_PASSWORD=password"
+      - "POSTGRES_DB=mydb"
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - webapp-nerpstack-network
+
+  database_view:
+    image: dpage/pgadmin4:9.9
+    restart: always
+    container_name: webapp-nerpstack-postgresview
+    environment:
+      - "PGADMIN_DEFAULT_EMAIL=user@localhost.id"
+      - "PGADMIN_DEFAULT_PASSWORD=password"
+    ports:
+      - 5433:80
+    volumes:
+      - postgres-view-data:/var/lib/pgadmin/
+    networks:
+      - webapp-nerpstack-network
+
+volumes:
+  postgres-data:
+  postgres-view-data:
+
+networks:
+  webapp-nerpstack-network:
