@@ -80,7 +80,7 @@ The backend exposes the following endpoints:
 1. Clone the repository
 
    ```sh
-   git clone https://github.com/ernestoyoofi/pernstack-webappbook.git
+   git clone https://github.com/ernestoyoofi/pernstack-webappbook-template.git
    ```
 
 2. Setup Database Create a PostgreSQL database and configure your .env file.
